@@ -81,3 +81,55 @@ def search_product():
 
     except ValueError:
         print("Invalid input!")
+def min_max_product():
+    products = load_product()
+
+    if not products:
+        print("Product yoxdur!")
+        return
+
+    cheap = min(products, key=get_price)
+    expensive = max(products, key=get_price)
+
+    print("En ucuz mehsul:", cheap)
+    print("En baha mehsul:", expensive)
+
+def app():
+ while True:
+            print('''
+        ================================
+            MINI PRODUCT SYSTEM
+        ================================
+
+        1.Bütün məhsullari göstər
+        2.Sort et
+        3.Search et
+        4.Baha ucuz
+
+            0. Proqramdan çix
+
+        ================================
+
+
+
+        ''')
+            choice=int(input("Enter choice:"))
+            if choice==1:
+             show_product()
+
+            elif choice==2:
+             sort_product()
+
+            elif choice==3:
+                search_product()
+
+            elif choice==4:
+                min_max_product()
+
+            elif choice==5:
+             print("Exit...")
+             break
+
+            else:
+                print("404")
+                continue
