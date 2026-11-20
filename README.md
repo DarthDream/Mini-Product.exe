@@ -1,4 +1,4 @@
-🛒 Mini Product Management System
+🛒 Mini Product Management System 
 
 A simple product management project developed using Python and JSON. This project is designed to manage product data and practice basic Python programming concepts.
 
