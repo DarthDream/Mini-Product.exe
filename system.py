@@ -107,7 +107,6 @@ def min_max_product():
     print("\nEn baha mehsul:")
     print(f"ID: {expensive['id']} | Name: {expensive['name']} | Price: {expensive['price']}")
 
-
 def app():
     while True:
         print('''
@@ -149,6 +148,3 @@ def app():
 
         except ValueError:
             print("Invalid input!")
-
-
-app()
