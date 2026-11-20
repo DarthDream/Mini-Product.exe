@@ -25,7 +25,7 @@ JSON
 Mini-Product.exe/
 │
 ├── app.py
-├── sistem.py
+├── system.py
 ├── storage.py
 ├── product.json
 └── README.md
