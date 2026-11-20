@@ -1,11 +1,17 @@
-from storage import*
+from storage import *
 import json
+
+
 def show_product():
-   show=load_product()
-   try:
-      return show
-   except:
-      print("404")
+    products = load_product()
+
+    if not products:
+        print("Product yoxdur!")
+        return
+
+    for product in products:
+        print(f"ID: {product['id']} | Name: {product['name']} | Price: {product['price']}")
+
 
 def get_price(product):
     return product["price"]
@@ -15,8 +21,8 @@ def sort_product():
     products = load_product()
 
     print('''
-    1. High>
-    2. Low<
+    1. High to Low
+    2. Low to High
     3. Back
     ''')
 
@@ -24,10 +30,10 @@ def sort_product():
         choice = int(input("Enter choice: "))
 
         if choice == 1:
-            sorted_products = sorted(products, key=get_price, reverse=False)
+            sorted_products = sorted(products, key=get_price, reverse=True)
 
         elif choice == 2:
-            sorted_products = sorted(products, key=get_price, reverse=True)
+            sorted_products = sorted(products, key=get_price, reverse=False)
 
         elif choice == 3:
             return
@@ -36,11 +42,13 @@ def sort_product():
             print("Wrong choice!")
             return
 
-        for item in sorted_products:
-            print(f"ID: {item['id']} | Name: {item['name']} | Price: {item['price']}")
+        for product in sorted_products:
+            print(f"ID: {product['id']} | Name: {product['name']} | Price: {product['price']}")
 
     except ValueError:
         print("404")
+
+
 def search_product():
     products = load_product()
 
@@ -51,7 +59,7 @@ def search_product():
     """)
 
     try:
-        choice = int(input("Enter coice: "))
+        choice = int(input("Enter choice: "))
 
         if choice == 1:
             Id = int(input("Enter ID: "))
@@ -81,6 +89,8 @@ def search_product():
 
     except ValueError:
         print("Invalid input!")
+
+
 def min_max_product():
     products = load_product()
 
@@ -91,45 +101,54 @@ def min_max_product():
     cheap = min(products, key=get_price)
     expensive = max(products, key=get_price)
 
-    print("En ucuz mehsul:", cheap)
-    print("En baha mehsul:", expensive)
+    print("\nEn ucuz mehsul:")
+    print(f"ID: {cheap['id']} | Name: {cheap['name']} | Price: {cheap['price']}")
+
+    print("\nEn baha mehsul:")
+    print(f"ID: {expensive['id']} | Name: {expensive['name']} | Price: {expensive['price']}")
+
 
 def app():
- while True:
-            print('''
+    while True:
+        print('''
         ================================
             MINI PRODUCT SYSTEM
         ================================
 
-        1.Bütün məhsullari göstər
-        2.Sort et
-        3.Search et
-        4.Baha ucuz
+        1. Butun mehsullari goster
+        2. Sort et
+        3. Search et
+        4. En baha ve en ucuz
 
-            0. Proqramdan çix
+          0. Proqramdan cix
 
         ================================
-
-
-
         ''')
-            choice=int(input("Enter choice:"))
-            if choice==1:
-             show_product()
 
-            elif choice==2:
-             sort_product()
+        try:
+            choice = int(input("Enter choice: "))
 
-            elif choice==3:
+            if choice == 1:
+                show_product()
+
+            elif choice == 2:
+                sort_product()
+
+            elif choice == 3:
                 search_product()
 
-            elif choice==4:
+            elif choice == 4:
                 min_max_product()
 
-            elif choice==5:
-             print("Exit...")
-             break
+            elif choice == 0:
+                print("Exit...")
+                break
 
             else:
-                print("404")
-                continue
+                print("Wrong choice!")
+
+        except ValueError:
+            print("Invalid input!")
+
+
+app()
